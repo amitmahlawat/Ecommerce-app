@@ -1,4 +1,5 @@
-import React from "react";
+import React,{useContext} from "react";
+import CartContext from "../Store/CartContext";
 import {
   Container,
   Row,
@@ -14,11 +15,19 @@ import Modal from "./Modal";
 
 
 const Cart = (props) => {
+const CartCntxt=useContext(CartContext)
+    console.log(CartCntxt.msg)
     let totalAmount=0
   const Items = props.Items;
-  Items.map(item=>{
-    totalAmount=totalAmount+item.price
+  CartCntxt.Items.map(item=>{
+    totalAmount=totalAmount+(item.price*item.quantity)
   })
+
+  const RemoveItemHandler=(item)=>{
+    CartCntxt.RemoveItem(item)
+  }
+
+
   return (
   <>
   
@@ -33,13 +42,13 @@ const Cart = (props) => {
         </tr>
       </thead>
       <tbody className="table-group-divider">
-        {Items.map(item=>
-            <tr>
+        {CartCntxt.Items.map(item=>
+         item.quantity>0 &&  <tr>
                 <td><Row><Col xs={3}><img className="img-fluid" src={item.imageUrl} ></img></Col>{item.title}</Row></td>
                 
                 <td>${item.price}</td>
                 <td>{item.quantity}</td>
-                <td><Button variant="danger">Remove</Button></td>
+                <td><Button onClick={()=>RemoveItemHandler(item)} variant="danger">Remove</Button></td>
             </tr>
             )}
         

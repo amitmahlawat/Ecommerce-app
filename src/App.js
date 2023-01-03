@@ -5,6 +5,7 @@ import Items from './Components/Items';
 import Cart from './Components/Cart';
 import CartButton from './Components/CartButton';
 import Modal from './Components/Modal';
+import CartProvider from './Store/CartProvider'
 
 function App() {
   const[isOpen,SetIsOpen]=useState(false)
@@ -49,7 +50,7 @@ function App() {
     ]
 
   return (
-    <>
+    < CartProvider>
     <Navbar bg='dark' expand='sm'  variant='dark'>
       <Container>
         {/* <Nav className='justify-content-center'>
@@ -58,8 +59,9 @@ function App() {
           </Nav.Item>
         </Nav> */}
     <Navbar.Brand href="/" >Generics</Navbar.Brand>
-    
-    <Nav className="justify-content-end" variant='tab' activeKey="/home" >
+  
+    <Nav className="d-flex justify-content-between" variant='tab' activeKey="/home" >
+      
       <Nav.Item>
         <Nav.Link href="/home" >Home</Nav.Link>
       </Nav.Item>
@@ -69,6 +71,7 @@ function App() {
       <Nav.Item>
         <Nav.Link >About</Nav.Link>
       </Nav.Item>
+      
     </Nav>
     
    <CartButton Items={cartElements} onClick={()=>SetIsOpen(true)}/>
@@ -90,7 +93,7 @@ function App() {
     <CloseButton variant='light' onClick={()=>SetIsOpen(false)}></CloseButton> 
     <Cart Items={cartElements}/>
     </Modal>
-    </>
+    </CartProvider>
     )}
 
 
