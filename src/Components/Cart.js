@@ -27,7 +27,7 @@ const CartCntxt=useContext(CartContext)
     CartCntxt.RemoveItem(item)
   }
 
-
+  console.log(CartCntxt.Items)
   return (
   <>
   

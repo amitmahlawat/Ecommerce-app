@@ -6,6 +6,9 @@ import Cart from './Components/Cart';
 import CartButton from './Components/CartButton';
 import Modal from './Components/Modal';
 import CartProvider from './Store/CartProvider'
+import { Route } from 'react-router-dom';
+import About from './Components/About';
+import { NavLink } from 'react-router-dom';
 
 function App() {
   const[isOpen,SetIsOpen]=useState(false)
@@ -60,16 +63,22 @@ function App() {
         </Nav> */}
     <Navbar.Brand href="/" >Generics</Navbar.Brand>
   
-    <Nav className="d-flex justify-content-between" variant='tab' activeKey="/home" >
+    <Nav className="d-flex justify-content-between" variant='pills' defaultActiveKey="/home"   >
       
-      <Nav.Item>
-        <Nav.Link href="/home" >Home</Nav.Link>
+      <Nav.Item >
+        
+        <NavLink activeClassName='' className='ms-5' to="/home" >Home</NavLink>
+        
+      </Nav.Item>
+      
+      <Nav.Item >
+        <NavLink className='ms-5' to='/store' >Store</NavLink>
+        
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link >Store</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link >About</Nav.Link>
+      
+        <NavLink className='ms-5' to='/About' >About</NavLink>
+        
       </Nav.Item>
       
     </Nav>
@@ -78,6 +87,8 @@ function App() {
     
       </Container>
     </Navbar>
+    
+    
     {/* <Container className='container-fluid p-5 bg-secondary text-white' >
       <Row>
         <Col className='offset-5'> */}
@@ -86,8 +97,12 @@ function App() {
       </Row>
       
     </Container> */}
-   
+    <Route path='/About'>
+    <About/>
+    </Route>
+   <Route path='/store'>
     <Items Items={cartElements}/>
+    </Route>
     
     <Modal open={isOpen} onClose={()=>SetIsOpen(false)}>
     <CloseButton variant='light' onClick={()=>SetIsOpen(false)}></CloseButton> 
