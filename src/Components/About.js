@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 const About = () => {
   return (
     <Container >
-      <h1 className="display-3">About</h1>
+      <h1 className="display-3" style={{textAlign:'center',fontFamily:'cursive'}} >About</h1>
       <p>
         Lorem ipsum carrots enhanced rebates. Excellent sayings of a man of
         sorrows, hates no prosecutors will unfold in the enduring of which were

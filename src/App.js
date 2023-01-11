@@ -8,6 +8,7 @@ import Modal from './Components/Modal';
 import CartProvider from './Store/CartProvider'
 import { Route } from 'react-router-dom';
 import About from './Components/About';
+import Home from './Components/Home';
 import { NavLink } from 'react-router-dom';
 
 function App() {
@@ -67,7 +68,7 @@ function App() {
       
       <Nav.Item >
         
-        <NavLink activeClassName='' className='ms-5' to="/home" >Home</NavLink>
+        <NavLink className='ms-5' to="/home" >Home</NavLink>
         
       </Nav.Item>
       
@@ -100,6 +101,9 @@ function App() {
     <Route path='/About'>
     <About/>
     </Route>
+    <Route path='/Home'>
+    <Home/>
+    </Route>
    <Route path='/store'>
     <Items Items={cartElements}/>
     </Route>
@@ -108,6 +112,15 @@ function App() {
     <CloseButton variant='light' onClick={()=>SetIsOpen(false)}></CloseButton> 
     <Cart Items={cartElements}/>
     </Modal>
+    {/* <Container className='justify-content-center'>
+      <Row>
+        <Col md={{ span: 6, offset: 4}}> */}
+        <footer className='display-2 pb-2 pt-3 mt-3 mb-0' style={{backgroundColor:'skyblue', padding:"2rem",textAlign:"",color:"white",fontFamily:'fantasy'}}>The Generics</footer>
+        
+        {/* </Col>
+      </Row>
+    </Container> */}
+    
     </CartProvider>
     )}
 
