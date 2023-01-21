@@ -25,10 +25,11 @@ const Items=(props)=>{
                 {Items.map(item=>
                     <Col xs={3} >
                        
-                    <Card >
+                    <Card  >
                     
                         <CardImg src={item.imageUrl}></CardImg>
-                        <Card.Body>
+                        <Card.Body key={item.title}>
+                            
                         <Card.Title>{item.title}</Card.Title>
                             <Card.Text>{item.price}</Card.Text>
                             <Button onClick={()=>addtoCarthandler(item)} variant="success">Add to Cart</Button>

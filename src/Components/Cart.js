@@ -16,7 +16,7 @@ import Modal from "./Modal";
 
 const Cart = (props) => {
 const CartCntxt=useContext(CartContext)
-    console.log(CartCntxt.msg)
+    
     let totalAmount=0
   const Items = props.Items;
   CartCntxt.Items.map(item=>{

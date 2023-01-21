@@ -26,9 +26,10 @@ const AddItemHandler=(item)=>{
 
 const RemoveItemHandler=(item)=>{
     const temp=[...items]
-    if(item){
+    if(item.quantity>1){
         item.quantity=item.quantity-1
-    }
+    }else{temp.pop(item)}
+    console.log(temp)
     SetItems(temp)
 }
 
@@ -39,13 +40,14 @@ const cartContext={
     
 }
     return (<>
+    {alert && <Alert  variant='danger'>
+            Item is already in Cart!
+          </Alert>}
         <CartContext.Provider value={cartContext}>
             {props.children}
             
         </CartContext.Provider>
-            {alert && <Alert  variant='danger'>
-            Item is already in Cart!
-          </Alert>}</>
+            </>
 
     )
 }

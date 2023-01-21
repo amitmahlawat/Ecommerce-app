@@ -10,6 +10,7 @@ import { Route } from 'react-router-dom';
 import About from './Components/About';
 import Home from './Components/Home';
 import { NavLink } from 'react-router-dom';
+import Contact from './Components/Contact';
 
 function App() {
   const[isOpen,SetIsOpen]=useState(false)
@@ -81,6 +82,11 @@ function App() {
         <NavLink className='ms-5' to='/About' >About</NavLink>
         
       </Nav.Item>
+      <Nav.Item>
+      
+        <NavLink className='ms-5' to='/Contact' >Contact Us</NavLink>
+        
+      </Nav.Item>
       
     </Nav>
     
@@ -106,6 +112,9 @@ function App() {
     </Route>
    <Route path='/store'>
     <Items Items={cartElements}/>
+    </Route>
+    <Route>
+      <Contact/>
     </Route>
     
     <Modal open={isOpen} onClose={()=>SetIsOpen(false)}>
