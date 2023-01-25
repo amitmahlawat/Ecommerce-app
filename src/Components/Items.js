@@ -1,6 +1,9 @@
 import React,{useContext} from "react";
-import { Container,Row,Col,Card, Table, Button, CardImg } from "react-bootstrap";
+import { Container,Row,Col,Card, Table, Button, CardImg} from "react-bootstrap";
+import { Link } from "react-router-dom";
 import CartContext from "../Store/CartContext";
+import ProductDetails from "./ProductDetails";
+import { Route } from "react-router-dom";
 const Items=(props)=>{
     const Items=props.Items
     const CartCntxt=useContext(CartContext)
@@ -23,11 +26,12 @@ const Items=(props)=>{
             <Row>
             
                 {Items.map(item=>
+                
                     <Col xs={3} >
                        
                     <Card  >
                     
-                        <CardImg src={item.imageUrl}></CardImg>
+                    <Link to={`/store/${item.title}`}><CardImg src={item.imageUrl}></CardImg></Link>
                         <Card.Body key={item.title}>
                             
                         <Card.Title>{item.title}</Card.Title>
@@ -36,11 +40,13 @@ const Items=(props)=>{
                         </Card.Body>
                         
                     </Card>
+                    
                   
                     </Col>)}
                 
             </Row>
         </Container>
+        
         </>
     )
 };

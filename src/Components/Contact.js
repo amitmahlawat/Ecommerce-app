@@ -34,7 +34,7 @@ const PhoneRef=useRef('')
 
     }
 
-return <>
+return (<>
 <h1 className="display-2" style={{textAlign:"center"}}>Get In Touch</h1>
 <Container>
     <Row className="offset-3">
@@ -61,7 +61,7 @@ return <>
 
 </Container>
 </>
-};
+)};
 
 
 export default Contact;

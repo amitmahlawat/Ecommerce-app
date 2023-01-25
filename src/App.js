@@ -6,11 +6,12 @@ import Cart from './Components/Cart';
 import CartButton from './Components/CartButton';
 import Modal from './Components/Modal';
 import CartProvider from './Store/CartProvider'
-import { Route } from 'react-router-dom';
+import { Route,Switch,Redirect } from 'react-router-dom';
 import About from './Components/About';
 import Home from './Components/Home';
 import { NavLink } from 'react-router-dom';
 import Contact from './Components/Contact';
+import ProductDetails from './Components/ProductDetails';
 
 function App() {
   const[isOpen,SetIsOpen]=useState(false)
@@ -69,7 +70,7 @@ function App() {
       
       <Nav.Item >
         
-        <NavLink className='ms-5' to="/home" >Home</NavLink>
+        <NavLink className='ms-5 active' to="/Home" >Home</NavLink>
         
       </Nav.Item>
       
@@ -104,18 +105,26 @@ function App() {
       </Row>
       
     </Container> */}
+    <Switch>
+      <Route path='/' exact>
+      <Redirect to='/Home'/>
+      </Route>
     <Route path='/About'>
     <About/>
     </Route>
     <Route path='/Home'>
     <Home/>
     </Route>
-   <Route path='/store'>
+   <Route path='/store' exact>
     <Items Items={cartElements}/>
     </Route>
-    <Route>
+    <Route path='/Contact'> 
       <Contact/>
     </Route>
+    <Route path='/store/:ProductId'>
+      <ProductDetails/>
+    </Route>
+    </Switch>
     
     <Modal open={isOpen} onClose={()=>SetIsOpen(false)}>
     <CloseButton variant='light' onClick={()=>SetIsOpen(false)}></CloseButton> 
