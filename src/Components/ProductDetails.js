@@ -1,67 +1,94 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Card ,CardImg, Container,Image,Row,Col} from "react-bootstrap";
+import { Card, CardImg, Container, Image, Row, Col } from "react-bootstrap";
+import ReactImageMagnify from "react-image-magnify";
+import image from "../Components/images/yellow and black colors.jpg";
 
+const ProductDetails = () => {
+  const cartElements = [
+    {
+      title: "Colors",
 
-const ProductDetails=()=>{
-    const cartElements = [
+      price: 200,
 
-        {
-        
-        title: 'Colors',
-        
-        price: 200,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-        
-        quantity: 2,
-        
-        },
-        
-        {
-        
-        title: 'Black and white Colors',
-        
-        price: 50,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-        
-        quantity: 3,
-        
-        },
-        
-        {
-        
-        title: 'Yellow and Black Colors',
-        
-        price: 70,
-        
-        imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-        
-        quantity: 1,
-        
-        }
-        
-        ]
+      imageUrl:
+        "https://prasadyash2411.github.io/ecom-website/img/Album%201.png",
 
-    const params=useParams()
-console.log(params.ProductId)
-    const    Item=cartElements.find(item=>item.title===params.ProductId)
-        console.log(Item)
-    return(
-        <section>
-            <h1 className="display-2" style={{textAlign:'center'}}>Product details</h1>
-            <Container>
-            <Row>
-                <Col md={{ offset:1}}>
-                <Image style={{width:'345px',height:'513px'}} src={Item.imageUrl}></Image>
-                </Col>
-            </Row>
-            
-            
-            </Container>
-        </section>
-    )
+      quantity: 2,
+      Reviews: <p>Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn’t ended.
+
+      You fight like a younger man, there’s nothing held back. It’s admirable, but mistaken. When their enemies were at the gates the Romans would suspend democracy and appoint one man to protect the city.
+      
+      It wasn’t considered an honor, it was a public service.</p>
+    },
+
+    {
+      title: "Black and white Colors",
+
+      price: 50,
+
+      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
+
+      quantity: 3,
+      Reviews: <p>Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn’t ended.
+
+      You fight like a younger man, there’s nothing held back. It’s admirable, but mistaken. When their enemies were at the gates the Romans would suspend democracy and appoint one man to protect the city.
+      
+      It wasn’t considered an honor, it was a public service.</p>
+    },
+
+    {
+      title: "Yellow and Black Colors",
+
+      price: 70,
+
+      imageUrl:
+        "https://prasadyash2411.github.io/ecom-website/img/Album%203.png",
+
+      quantity: 1,
+      Reviews: <p>Hero can be anyone. Even a man knowing something as simple and reassuring as putting a coat around a young boy shoulders to let him know the world hadn’t ended.
+
+      You fight like a younger man, there’s nothing held back. It’s admirable, but mistaken. When their enemies were at the gates the Romans would suspend democracy and appoint one man to protect the city.
+      
+      It wasn’t considered an honor, it was a public service.</p>
+    },
+  ];
+
+  const params = useParams();
+  console.log(params.ProductId);
+  const Item = cartElements.find((item) => item.title === params.ProductId);
+  console.log(Item);
+  return (
+    <section>
+      <h1 className="display-2" style={{ textAlign: "center" }}>
+        Product details
+      </h1>
+      <Container style={{width:512, height:800}}>
+        <Row>
+            <Col md={6}>
+            <ReactImageMagnify
+          {...{
+            smallImage: {
+              alt: "Wristwatch by Ted Baker London",
+              isFluidWidth: true,
+              src: Item.imageUrl,
+            },
+            largeImage: {
+              src: Item.imageUrl,
+              width: 600,
+              height: 800,
+            },
+          }}
+        />
+            </Col>
+            <Col >
+            <p>{Item.Reviews}</p>
+            </Col>
+        </Row>
+        
+      </Container>
+    </section>
+  );
 };
 
 export default ProductDetails;
