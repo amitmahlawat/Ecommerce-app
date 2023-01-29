@@ -1,8 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Card, CardImg, Container, Image, Row, Col } from "react-bootstrap";
+import {  Container, Row, Col } from "react-bootstrap";
 import ReactImageMagnify from "react-image-magnify";
-import image from "../Components/images/yellow and black colors.jpg";
+
 
 const ProductDetails = () => {
   const cartElements = [
@@ -72,6 +72,7 @@ const ProductDetails = () => {
               alt: "Wristwatch by Ted Baker London",
               isFluidWidth: true,
               src: Item.imageUrl,
+              key:Item.title
             },
             largeImage: {
               src: Item.imageUrl,

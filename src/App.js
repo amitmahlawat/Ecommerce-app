@@ -1,4 +1,4 @@
-import React,{useState,ReactDOM} from 'react';
+import React,{useState,ReactDOM, useContext} from 'react';
 import { Button, CloseButton, Container, Navbar, Nav,Row,Col,Card ,Stack} from 'react-bootstrap';
 import './App.css';
 import Items from './Components/Items';
@@ -12,8 +12,16 @@ import Home from './Components/Home';
 import { NavLink } from 'react-router-dom';
 import Contact from './Components/Contact';
 import ProductDetails from './Components/ProductDetails';
+import Login from './Components/Login';
+import AuthContext from './Components/auth-context';
+import { AuthContextProvider } from './Components/auth-context';
+
 
 function App() {
+
+  const authCtx=useContext(AuthContext);
+  console.log(authCtx)
+  
   const[isOpen,SetIsOpen]=useState(false)
   const cartElements = [
 
@@ -54,8 +62,13 @@ function App() {
     }
     
     ]
+const logoutHandler=()=>{
+    authCtx.logout()
+    console.log(authCtx.isLoggedIn)
+}
 
   return (
+    // <AuthContextProvider>
     < CartProvider>
     <Navbar bg='dark' expand='sm'  variant='dark'>
       <Container>
@@ -88,7 +101,16 @@ function App() {
         <NavLink className='ms-5' to='/Contact' >Contact Us</NavLink>
         
       </Nav.Item>
+      <Nav.Item>
       
+       {!authCtx.isLoggedIn && <NavLink className='ms-5' to='/Login' >Login</NavLink>}
+        
+      </Nav.Item>
+       
+      <Nav.Item>
+      {authCtx.isLoggedIn && <Button variant='dark' className='ms-5' onClick={logoutHandler} >Logout</Button>}
+      </Nav.Item>
+
     </Nav>
     
    <CartButton Items={cartElements} onClick={()=>SetIsOpen(true)}/>
@@ -115,14 +137,20 @@ function App() {
     <Route path='/Home'>
     <Home/>
     </Route>
-   <Route path='/store' exact>
+   {authCtx.isLoggedIn&&<Route path='/store' exact>
     <Items Items={cartElements}/>
-    </Route>
+    </Route>}
     <Route path='/Contact'> 
       <Contact/>
     </Route>
     <Route path='/store/:ProductId'>
       <ProductDetails/>
+    </Route>
+    <Route path='/Login'>
+    <Login/>
+    </Route>
+    <Route path="*">
+    <Redirect to='/'/>
     </Route>
     </Switch>
     
@@ -140,6 +168,7 @@ function App() {
     </Container> */}
     
     </CartProvider>
+    // </AuthContextProvider>
     )}
 
 
