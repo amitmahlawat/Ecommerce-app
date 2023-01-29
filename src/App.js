@@ -137,9 +137,13 @@ const logoutHandler=()=>{
     <Route path='/Home'>
     <Home/>
     </Route>
-   {authCtx.isLoggedIn&&<Route path='/store' exact>
+   {authCtx.isLoggedIn && <Route path='/store'  exact>
     <Items Items={cartElements}/>
     </Route>}
+    {!authCtx.isLoggedIn && <Route path='/store'  exact>
+    <Login/>
+    </Route>}
+
     <Route path='/Contact'> 
       <Contact/>
     </Route>
