@@ -23,7 +23,7 @@ const loginHandler=(token)=>{
 }
 const logoutHandler=()=>{
     SetToken(null)
-    localStorage.removeItem('token')
+    localStorage.clear()
     console.log('clicking')
 }
 const contextValue={

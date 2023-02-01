@@ -11,7 +11,21 @@ const Items=(props)=>{
     const addtoCarthandler=(item)=>{
         
         CartCntxt.addItem(item)
-        // console.log(CartCntxt.Items)
+        const Email=localStorage.getItem('Email')
+        const plainEmail=Email.replace('@','').replace('.','')
+        fetch(`https://react-http-c38c6-default-rtdb.firebaseio.com/cartItems/${plainEmail}.json`,
+        {
+            method:'POST',
+            body:JSON.stringify(item),
+            headers:{
+                'COntent-Type':'application/json'
+            }
+
+        }).then(res=>{
+            res.json().then(data=>{
+                console.log(data)
+            })
+        })
         
         
 

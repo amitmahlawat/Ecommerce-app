@@ -23,8 +23,20 @@ const CartCntxt=useContext(CartContext)
     totalAmount=totalAmount+(item.price*item.quantity)
   })
 
-  const RemoveItemHandler=(item)=>{
+  const RemoveItemHandler=async(item)=>{
     CartCntxt.RemoveItem(item)
+    console.log(item,'msg')
+    const Email= localStorage.getItem("Email");
+       const plainEmail=Email.replace("@",'').replace(".",'')
+ const response=await fetch(`https://react-http-c38c6-default-rtdb.firebaseio.com/cartItems/${plainEmail}/${item.key}.json`,{
+      method:"DELETE",
+      body:null,
+      headers:{
+        'Content-type':'application/json'
+      }
+    })
+    const data=await response.json()
+    console.log(data)
   }
 
   console.log(CartCntxt.Items)

@@ -7,13 +7,16 @@ import '../node_modules/react-bootstrap/dist/react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter } from 'react-router-dom';
 import {AuthContextProvider} from './Components/auth-context';
+import CartProvider from './Store/CartProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AuthContextProvider>
+    <CartProvider>
   <BrowserRouter>
     <App />
   </BrowserRouter>
+  </CartProvider>
 </AuthContextProvider>
 );
 

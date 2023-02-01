@@ -12,7 +12,7 @@ const AddItemHandler=(item)=>{
     })
 
     if(existingItem===-1){
-        SetItems([...items,item])
+        SetItems(prev => [...prev, item])
     }else{
         setAlert(true)
         setTimeout(() => {
@@ -33,10 +33,16 @@ const RemoveItemHandler=(item)=>{
     SetItems(temp)
 }
 
+const clearCartHandler=()=>{
+    SetItems([])
+    
+}   
+
 const cartContext={
     Items:items,
     addItem:AddItemHandler,
     RemoveItem:RemoveItemHandler,
+    clearCart:clearCartHandler
     
 }
     return (<>
